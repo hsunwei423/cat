@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getBreed } from 'api/catApi';
 
 import Input from 'componentss/common/Input';
 
@@ -8,7 +9,13 @@ const Landing = () => {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    // TODO: fetch api
+    getBreed(name)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }, [name]);
 
   return (

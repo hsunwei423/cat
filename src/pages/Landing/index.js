@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { getBreed } from 'api/catApi';
 import { debounce } from 'lodash-es';
 
-import Input from 'componentss/common/Input';
+import Input from 'components/common/Input';
 
 import style from './style.module.scss';
 
@@ -10,20 +10,29 @@ const Landing = () => {
   const [name, setName] = useState('');
   const nameRef = useRef(name);
 
-  const getData = useCallback(debounce(() => {
+  const getData = () => {
     getBreed(nameRef.current)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.error(err);
-    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
+  const getDataDebounce = useCallback(debounce(() => {
+    getData();
   }, 1000), []);
 
   const handleInputChange = (value) => {
-    setName(value);
-    nameRef.current = value;
-    getData();
+    const val = value || '';
+    setName(val);
+    nameRef.current = val;
+    if (val.length > 2) {
+      getDataDebounce();
+    } else {
+      getData();
+    }
   }
 
   return (

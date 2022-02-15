@@ -8,16 +8,25 @@ import Item from 'components/Item';
 
 import style from './style.module.scss';
 
+const LOAD_MAX_IMG_NUM = 8;
+
 const Landing = () => {
   const [name, setName] = useState('');
   const [list, setList] = useState([]);
   const nameRef = useRef(name);
+  const totalListRef = useRef([]);
 
   const getData = () => {
     getBreed(nameRef.current)
       .then(res => {
-        console.log(res);
-        setList(res.data);
+        console.log(res.data);
+        const { data } = res;
+        totalListRef.current = data;
+        if (data.length > LOAD_MAX_IMG_NUM) {
+          setList(data.slice(0, LOAD_MAX_IMG_NUM));
+        } else {
+          setList(data);
+        }
       })
       .catch(err => {
         console.error(err);
@@ -37,7 +46,11 @@ const Landing = () => {
     } else {
       getData();
     }
-  }
+  };
+
+  const handleLoadMore = () => {
+    
+  };
 
   return (
     <Layout>

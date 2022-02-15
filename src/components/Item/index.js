@@ -4,6 +4,7 @@ import { getImage } from 'api/catApi';
 import Spinner from 'components/common/Spinner';
 
 import style from './style.module.scss';
+import PlaceholderImg from 'assets/images/placeholder-612x612.jpg';
 
 const Item = ({
   imgId = '',
@@ -32,22 +33,21 @@ const Item = ({
 
   if (loading) {
     return (
-      <Spinner />
+      <div className={style['loading-wrapper']}>
+        <Spinner />
+      </div>
     )
   }
 
   return (
     <div className={style.container}>
-      {
-        !loading &&
-          <img
-            className={style['img-wrapper']}
-            src={imgUrl}
-            alt="cat img"
-            loading='lazy'
-            width="100%"
-          />
-      }
+      <img
+        className={style['img-wrapper']}
+        src={imgUrl || PlaceholderImg}
+        alt="cat img"
+        loading='lazy'
+        width="100%"
+      />
 
       <div className={style['detail-container']}>
         <div className={style.name}>{ name }</div>

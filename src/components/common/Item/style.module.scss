@@ -1,0 +1,33 @@
+.container {
+  &:hover {
+    box-shadow: rgb(220 214 209) 0px 0px 2px 2px; 
+  }
+}
+
+.img-wrapper {
+  margin-bottom: 16px;
+
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: rgb(51, 51, 51);
+
+  .name {
+    color: rgb(128, 128, 128);
+  }
+
+  .weight {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+  }
+}

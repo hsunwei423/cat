@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { getBreed } from 'api/catApi';
 import { debounce } from 'lodash-es';
 
+import Layout from 'components/common/Layout';
 import Input from 'components/common/Input';
 import Item from 'components/common/Item';
 
@@ -39,7 +40,7 @@ const Landing = () => {
   }
 
   return (
-    <div>
+    <Layout>
       <h1 className={style.title}>Search Cat</h1>
       <div className={style['search-input-wrapper']}>
         <Input placeholder='input cat name' onChange={handleInputChange} value={name} />
@@ -60,7 +61,7 @@ const Landing = () => {
           })
         }
       </div>
-    </div>
+    </Layout>
   )
 };
 

@@ -6,8 +6,10 @@
 
 .img-wrapper {
   margin-bottom: 16px;
+  max-width: 224px;
+  max-height: 224px;
 
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 

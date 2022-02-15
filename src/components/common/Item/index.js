@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { getImage } from 'api/catApi';
+
 import style from './style.module.scss';
 
 const Item = ({
@@ -9,10 +12,37 @@ const Item = ({
   },
   lifeSpan = ''
 }) => {
-  // TODO: use imgId to call get images api
+  const [imgUrl, setImgUrl] = useState('');
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    getImage(imgId)
+      .then(res => {
+        setImgUrl(res.data.url);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+  }, [imgId]);
+
   return (
     <div className={style.container}>
-      {/* <img className={style['img-wrapper']} src={imgId} alt="cat img" /> */}
+      { /** loading spinner */}
+
+
+      {
+        !loading &&
+          <img
+            className={style['img-wrapper']}
+            src={imgUrl}
+            alt="cat img"
+            loading='lazy'
+            width="100%"
+          />
+      }
 
       <div className={style['detail-container']}>
         <div className={style.name}>{ name }</div>

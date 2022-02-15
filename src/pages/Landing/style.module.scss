@@ -1,5 +1,9 @@
 .container {
+  padding: 16px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -14,6 +18,7 @@
 
 .item-container {
   margin-top: 36px;
+  width: 100%;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -25,7 +30,7 @@
 .load-more-btn {
   width: 120px;
   padding: 8px 18px;
-  margin: 32px auto 0 auto;
+  margin: 32px auto;
   font-size: 15px;
   font-weight: 500;
   line-height: 30px;
@@ -35,3 +40,16 @@
   text-align: center;
   cursor: pointer;
 }
+
+.status-wrapper {
+  margin-top: 48px;
+}
+
+// .load-wrapper {
+//   margin: 32px auto;
+// }
+
+// .no-data-img {
+//   margin: 0 auto;
+//   object-fit: cover;
+// }

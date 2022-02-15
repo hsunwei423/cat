@@ -1,13 +1,25 @@
+$item-height: 300px;
+
 .container {
-  height: 300px;
-  // max-width: 300px;
+  padding: 16px;
+  height: $item-height;
+  width: 100%;
+  max-width: 280px;
   border-radius: 8px;
+  // border: 1px solid red;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   &:hover {
     box-shadow: rgb(220 214 209) 0px 0px 2px 2px; 
   }
 }
 
 .loading-wrapper {
+  height: $item-height;
   display: flex;
   align-items: center;
   justify-content: center;

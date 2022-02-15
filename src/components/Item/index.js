@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getImage } from 'api/catApi';
 
+import Spinner from 'components/common/Spinner';
+
 import style from './style.module.scss';
 
 const Item = ({
@@ -28,11 +30,14 @@ const Item = ({
       })
   }, [imgId]);
 
+  if (loading) {
+    return (
+      <Spinner />
+    )
+  }
+
   return (
     <div className={style.container}>
-      { /** loading spinner */}
-
-
       {
         !loading &&
           <img

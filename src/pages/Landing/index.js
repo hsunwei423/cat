@@ -4,7 +4,7 @@ import { debounce } from 'lodash-es';
 
 import Layout from 'components/common/Layout';
 import Input from 'components/common/Input';
-import Item from 'components/common/Item';
+import Item from 'components/Item';
 
 import style from './style.module.scss';
 

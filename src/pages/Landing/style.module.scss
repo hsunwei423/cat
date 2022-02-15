@@ -21,3 +21,17 @@
   align-items: center;
   justify-items: center;
 }
+
+.load-more-btn {
+  width: 120px;
+  padding: 8px 18px;
+  margin: 32px auto 0 auto;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 30px;
+  border: 1px solid rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+}

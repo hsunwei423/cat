@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import { getBreed } from "api/catApi";
 import { debounce } from "lodash-es";
+import { customizeDebounce } from 'utils';
 
 import Layout from "components/common/Layout";
 import Input from "components/common/Input";
@@ -48,7 +49,7 @@ const Landing = () => {
   };
 
   const getDataDebounce = useCallback(
-    debounce(() => {
+    customizeDebounce(() => {
       getData();
     }, 1000),
     []

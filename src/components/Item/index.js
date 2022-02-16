@@ -50,12 +50,22 @@ const Item = ({
       />
 
       <div className={style['detail-container']}>
-        <div className={style.name}>{ name }</div>
-        <div className={style.weight}>
-          <span>{weight.imperial}</span>
-          <span>{weight.metric}</span>
+        <div className={style.list}>
+          <span>Name</span>
+          <span className={style.name}>{ name || '-' }</span>
         </div>
-        <div className={style.lifeSpan}>{ lifeSpan }</div>
+        <div className={style.list}>
+          <span>Imperial</span>
+          <span className={style.weight}>{ weight.imperial || '-' }</span>
+        </div>
+        <div className={style.list}>
+          <span>Metric</span>
+          <span>{ weight.metric || '-' }</span>
+        </div>
+        <div className={style.list}>
+          <span>Life Span</span>
+          <span>{ lifeSpan || '-' }</span>
+        </div>
       </div>
     </div>
   )

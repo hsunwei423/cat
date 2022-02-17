@@ -9,6 +9,7 @@ import Layout from 'components/common/Layout';
 import Input from 'components/common/Input';
 import Item from 'components/Item';
 import Spinner from 'components/common/Spinner';
+import RadioButton from 'components/common/RadioButton';
 
 import NoDataImg from 'assets/images/img-no-data.jpg';
 
@@ -16,11 +17,14 @@ import style from './style.module.scss';
 
 const LOAD_MAX_IMG_NUM = 8;
 
+const SORTABLE_LIST = ['Name', 'Weight', 'LifeSpan'];
+
 const fetcher = (url) => apiInstance.get(url).then((res) => res.data);
 
 const Landing = () => {
   const [name, setName] = useState('');
   const [list, setList] = useState([]);
+  const [sortKey, setSortKey] = useState(SORTABLE_LIST[0]);
   const [totalList, setTotalList] = useState([]);
   const debounceName = useDebounce(name, name.length > 3 ? 1000 : 0);
 
@@ -53,6 +57,12 @@ const Landing = () => {
 
       setList((prev) => [...prev, ...totalList.slice(start, end)]);
     }
+  };
+
+  const renderSortList = () => {
+    return SORTABLE_LIST.map((d) => {
+      return <RadioButton name={d} key={d} checked={sortKey === d} />;
+    });
   };
 
   const renderItemList = () => {
@@ -88,6 +98,7 @@ const Landing = () => {
         <div className={style['search-input-wrapper']}>
           <Input placeholder="input cat name" onChange={setName} value={name} />
         </div>
+        <div className={style['radio-group-wrapper']}>{renderSortList()}</div>
 
         {loading ? (
           <div className={style['status-wrapper']}>

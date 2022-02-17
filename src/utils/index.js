@@ -7,6 +7,6 @@ export const customizeDebounce = (fn, delay = 0) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       fn.apply(context, args);
-    }, delay);    
-  }
+    }, delay);
+  };
 };

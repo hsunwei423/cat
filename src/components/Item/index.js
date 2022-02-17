@@ -20,6 +20,10 @@ const Item = ({
 
   useEffect(() => {
     let isComponentAlive = true;
+    if (!imgId) {
+      return;
+    }
+
     setLoading(true);
     getImage(imgId)
       .then((res) => {

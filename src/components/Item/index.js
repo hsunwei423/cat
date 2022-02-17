@@ -10,25 +10,31 @@ const Item = ({
   imgId = '',
   name = '',
   weight = {
-    imperial: "",
-    metric: ""
+    imperial: '',
+    metric: '',
   },
-  lifeSpan = ''
+  lifeSpan = '',
 }) => {
   const [imgUrl, setImgUrl] = useState('');
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    let isComponentAlive = true;
     setLoading(true);
     getImage(imgId)
-      .then(res => {
-        setImgUrl(res.data.url);
+      .then((res) => {
+        isComponentAlive && setImgUrl(res.data.url);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       })
       .finally(() => {
-        setLoading(false);
-      })
+        isComponentAlive && setLoading(false);
+      });
+
+    return () => {
+      isComponentAlive = false;
+    };
   }, [imgId]);
 
   if (loading) {
@@ -36,7 +42,7 @@ const Item = ({
       <div className={style['loading-wrapper']}>
         <Spinner />
       </div>
-    )
+    );
   }
 
   return (
@@ -45,30 +51,30 @@ const Item = ({
         className={style['img-wrapper']}
         src={imgUrl || PlaceholderImg}
         alt="cat img"
-        loading='lazy'
+        loading="lazy"
         width="100%"
       />
 
       <div className={style['detail-container']}>
         <div className={style.list}>
           <span>Name</span>
-          <span className={style.name}>{ name || '-' }</span>
+          <span className={style.name}>{name || '-'}</span>
         </div>
         <div className={style.list}>
           <span>Imperial</span>
-          <span className={style.weight}>{ weight.imperial || '-' }</span>
+          <span className={style.weight}>{weight.imperial || '-'}</span>
         </div>
         <div className={style.list}>
           <span>Metric</span>
-          <span>{ weight.metric || '-' }</span>
+          <span>{weight.metric || '-'}</span>
         </div>
         <div className={style.list}>
           <span>Life Span</span>
-          <span>{ lifeSpan || '-' }</span>
+          <span>{lifeSpan || '-'}</span>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Item;

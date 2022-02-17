@@ -40,13 +40,23 @@ const Landing = () => {
     if (!data) {
       return;
     }
-    setTotalList(data);
-    if (data.length > LOAD_MAX_IMG_NUM) {
-      setList(data.slice(0, LOAD_MAX_IMG_NUM));
+    const sortableList = data.sort((firstItem, secondItem) => {
+      if (sortKey === SORTABLE_LIST[0]) {
+        return firstItem.name > secondItem.name ? 1 : -1;
+      } else if (sortKey === SORTABLE_LIST[1]) {
+        return firstItem.weight?.imperial > secondItem.weight?.imperial ? 1 : -1;
+      } else {
+        return firstItem.life_span > secondItem.life_span ? 1 : -1;
+      }
+    });
+
+    setTotalList(sortableList);
+    if (sortableList.length > LOAD_MAX_IMG_NUM) {
+      setList(sortableList.slice(0, LOAD_MAX_IMG_NUM));
     } else {
-      setList(data);
+      setList(sortableList);
     }
-  }, [data]);
+  }, [data, sortKey]);
 
   const handleLoadMore = () => {
     const totalSize = totalList.length;

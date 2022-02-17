@@ -61,7 +61,9 @@ const Landing = () => {
 
   const renderSortList = () => {
     return SORTABLE_LIST.map((d) => {
-      return <RadioButton name={d} key={d} checked={sortKey === d} />;
+      return (
+        <RadioButton name={d} key={d} checked={sortKey === d} onChnage={() => setSortKey(d)} />
+      );
     });
   };
 

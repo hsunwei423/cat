@@ -22,8 +22,6 @@ const Landing = () => {
   const [name, setName] = useState('');
   const [list, setList] = useState([]);
   const [totalList, setTotalList] = useState([]);
-  const [isNoData, setNoData] = useState(false);
-  const nameRef = useRef(name);
   const debounceName = useDebounce(name, name.length > 3 ? 1000 : 0);
 
   const { data, error } = useSWR(
@@ -44,7 +42,6 @@ const Landing = () => {
     } else {
       setList(data);
     }
-    setNoData(data.length === 0);
   }, [data]);
 
   const handleLoadMore = () => {
@@ -96,7 +93,7 @@ const Landing = () => {
           <div className={style['status-wrapper']}>
             <Spinner />
           </div>
-        ) : isNoData ? (
+        ) : !data || data?.length === 0 ? (
           <img className={style['status-wrapper']} src={NoDataImg} alt="no data" width="300px" />
         ) : (
           renderItemList()
